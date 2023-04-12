@@ -11,3 +11,5 @@ router.get('/', getMovies);
 router.post('/', /* validateMovieInfo, */ createMovie);
 
 router.delete('/:cardId', /* validateMovieId, */ deleteMovie);
+
+module.exports = router;
