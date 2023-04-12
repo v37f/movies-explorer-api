@@ -5,6 +5,7 @@ const routes = require('./routes');
 const { PORT, DB_ADDRESS, ORIGIN } = require('./config');
 
 const app = express();
+app.use(express.json());
 app.use(routes);
 
 mongoose.set('strictQuery', true);
