@@ -96,6 +96,10 @@ module.exports.updateCurrentUser = (req, res, next) => {
         next(new BadRequestError(err.errors[Object.keys(err.errors)[0]].message));
         return;
       }
+      if (err.code === 11000) {
+        next(new ConflictError('Введённый email уже занят'));
+        return;
+      }
       next(err);
     });
 };
