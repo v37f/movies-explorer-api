@@ -1,7 +1,7 @@
 const { celebrate, Joi } = require('celebrate');
 const { URL_PATTERN } = require('../utils/constants');
 
-module.exports.validateAuthInfo = celebrate({
+module.exports.validateRegisterInfo = celebrate({
   body: Joi.object().keys({
     email: Joi.string()
       .required()
@@ -29,6 +29,27 @@ module.exports.validateAuthInfo = celebrate({
         'any.required': 'Поле `name` является обязательным',
         'string.min': 'Поле `name` должно содержать минимум {#limit} символа',
         'string.max': 'Поле `name` должно содержать максимум {#limit} символов',
+      }),
+  }),
+});
+
+module.exports.validateLoginInfo = celebrate({
+  body: Joi.object().keys({
+    email: Joi.string()
+      .required()
+      .email()
+      .messages({
+        'string.base': 'Поле `email` должно иметь тип `string`',
+        'string.empty': 'Поле `email` должно быть заполнено',
+        'string.email': 'Поле `email` должно содержать валидный email-адрес',
+        'any.required': 'Поле `email` является обязательным',
+      }),
+    password: Joi.string()
+      .required()
+      .messages({
+        'string.base': 'Поле `password` должно иметь тип `string`',
+        'string.empty': 'Поле `password` должно быть заполнено',
+        'any.required': 'Поле `password` является обязательным',
       }),
   }),
 });
