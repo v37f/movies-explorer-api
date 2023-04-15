@@ -3,6 +3,9 @@ const URL_PATTERN = /https?:\/\/[a-z0-9-]+\.[a-z0-9]{2,}\/?[a-z0-9\-._~:/?#[\]@!
 const INTERNAL_SERVER_ERROR_MESSAGE = 'На сервере произошла ошибка';
 const PAGE_NOT_FOUND_MESSAGE = 'Страница не найдена';
 
+const AUTHORIZATION_REQUIRED_MESSAGE = 'Необходима авторизация';
+const INVALID_TOKEN_MESSAGE = 'Некорректный токен';
+
 const MOVIE_NOT_FOUND_MESSAGE = 'Фильм не найден';
 const MOVIE_DELETE_FORBIDDEN_MESSAGE = 'Нельзя удалить чужой сохранённый фильм';
 const MOVIE_DELETE_SUCCESS_MESSAGE = 'Фильм удалён из сохранённых';
@@ -16,6 +19,8 @@ const USER_INVALID_ID_MESSAGE = 'ID пользователя должен сод
 module.exports = {
   URL_PATTERN,
   INTERNAL_SERVER_ERROR_MESSAGE,
+  AUTHORIZATION_REQUIRED_MESSAGE,
+  INVALID_TOKEN_MESSAGE,
   PAGE_NOT_FOUND_MESSAGE,
   MOVIE_NOT_FOUND_MESSAGE,
   MOVIE_DELETE_FORBIDDEN_MESSAGE,
