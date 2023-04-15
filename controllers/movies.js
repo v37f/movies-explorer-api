@@ -2,7 +2,12 @@ const { Error } = require('mongoose');
 const BadRequestError = require('../errors/bad-request-error');
 const NotFoundError = require('../errors/not-found-error');
 const ForbiddenError = require('../errors/forbidden-error');
-
+const {
+  MOVIE_NOT_FOUND_MESSAGE,
+  MOVIE_DELETE_FORBIDDEN_MESSAGE,
+  MOVIE_DELETE_SUCCESS_MESSAGE,
+  MOVIE_INVALID_ID_MESSAGE,
+} = require('../utils/constants');
 const Movie = require('../models/movie');
 
 // GET /movies
@@ -58,19 +63,17 @@ module.exports.deleteMovie = (req, res, next) => {
   Movie.findById(req.params.movieId)
     .then((movie) => {
       if (!movie) {
-        throw new NotFoundError('Фильм не найден');
+        throw new NotFoundError(MOVIE_NOT_FOUND_MESSAGE);
       }
       if (movie.owner.toString() !== req.user._id) {
-        throw new ForbiddenError('Нельзя удалить чужой сохранённый фильм');
+        throw new ForbiddenError(MOVIE_DELETE_FORBIDDEN_MESSAGE);
       }
       return Movie.deleteOne(movie)
-        .then(() => res.send({ message: 'Фильм удалён из сохранённых' }));
+        .then(() => res.send({ message: MOVIE_DELETE_SUCCESS_MESSAGE }));
     })
     .catch((err) => {
       if (err instanceof Error.CastError) {
-        next(new BadRequestError(
-          'ID фильма должен содержать только латинские буквы[a-f] и цифры, а также иметь длину 24 символа',
-        ));
+        next(new BadRequestError(MOVIE_INVALID_ID_MESSAGE));
         return;
       }
       next(err);
