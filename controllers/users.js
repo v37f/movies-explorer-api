@@ -16,7 +16,7 @@ const {
 } = require('../utils/constants');
 
 // POST /signup
-module.exports.createUser = (req, res, next) => {
+module.exports.register = (req, res, next) => {
   const {
     email,
     password,
