@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const { errors } = require('celebrate');
 const routes = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { errorHandler } = require('./middlewares/error-handler');
@@ -10,6 +11,7 @@ app.use(express.json());
 app.use(requestLogger);
 app.use(routes);
 app.use(errorLogger);
+app.use(errors());
 app.use(errorHandler);
 
 mongoose.set('strictQuery', true);
