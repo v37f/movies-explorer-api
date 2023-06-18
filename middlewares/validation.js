@@ -5,7 +5,7 @@ module.exports.validateRegisterInfo = celebrate({
   body: Joi.object().keys({
     email: Joi.string()
       .required()
-      .email()
+      .email({ tlds: false })
       .messages({
         'string.base': 'Поле `email` должно иметь тип `string`',
         'string.empty': 'Поле `email` должно быть заполнено',
@@ -37,7 +37,7 @@ module.exports.validateLoginInfo = celebrate({
   body: Joi.object().keys({
     email: Joi.string()
       .required()
-      .email()
+      .email({ tlds: false })
       .messages({
         'string.base': 'Поле `email` должно иметь тип `string`',
         'string.empty': 'Поле `email` должно быть заполнено',
@@ -58,7 +58,7 @@ module.exports.validateUserInfo = celebrate({
   body: Joi.object().keys({
     email: Joi.string()
       .required()
-      .email()
+      .email({ tlds: false })
       .messages({
         'string.base': 'Поле `email` должно иметь тип `string`',
         'string.empty': 'Поле `email` должно быть заполнено',
