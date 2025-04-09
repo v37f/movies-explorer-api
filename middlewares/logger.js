@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 const winston = require('winston');
 const expressWinston = require('express-winston');
 
@@ -10,7 +11,7 @@ const requestLogger = expressWinston.logger({
   ],
   format: winston.format.combine(
     winston.format.timestamp({ format: 'YYYY/MM/DD HH:mm:ss' }),
-    winston.format.json(),
+    winston.format.json()
   ),
 });
 
@@ -23,7 +24,7 @@ const errorLogger = expressWinston.errorLogger({
   ],
   format: winston.format.combine(
     winston.format.timestamp({ format: 'YYYY/MM/DD HH:mm:ss' }),
-    winston.format.json(),
+    winston.format.json()
   ),
 });
 
